@@ -39,6 +39,7 @@ namespace Assignment_Hangman
 			string guessedLetters, 
 			int remainingLives)
 		{
+			Console.Clear();
 			PrintHangedMan(remainingLives);
 			ConsoleWritePrint.WriteLine("");
 			ConsoleWritePrint.WriteLine($"Secret Word: {secretWordGuessVersion} \n\n");

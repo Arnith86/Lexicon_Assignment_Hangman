@@ -1,13 +1,19 @@
 ﻿
 
+using ConsoleAbstraction;
+using System.Text;
+
 namespace Assignment_Hangman
 {
 	internal class GameLoop
 	{
-		
+		private readonly ConsoleUI _consoleUI;
 		private string _secretWord = string.Empty;
-		private char[]? _secretWordGuessVersion;
+		private const int _c_MAX_LIVES = 10;
 
+		private int _remainingLives;
+		private char[]? _secretWordGuessVersion;
+		private char[]? _guessedLetters = new char[26]; // inject trough constructor? if other language?
 
 		public string SecretWord 
 		{ 
@@ -19,7 +25,38 @@ namespace Assignment_Hangman
 			} 
 		}
 
+		public int RemainingLives 
+		{ 
+			get => _remainingLives;
+			private set
+			{
+				if (IsLivesValid(value))
+					_remainingLives = value;
+			}
+		}
 
+		public GameLoop(ConsoleUI consoleUI)
+		{
+			_consoleUI = consoleUI;
+			RemainingLives = _c_MAX_LIVES;
+		}
+
+
+		// ToDo: move validation logic to seperate class 
+		private bool IsLivesValid(int value)
+		{
+			if (value > _c_MAX_LIVES || value < 0)
+			{
+				throw new ArgumentOutOfRangeException(
+					nameof(value),
+					"Remaining lives cannot exceed maximum lives of 10 or be lower then 0."
+				);
+			}
+
+			return true;
+		}
+
+		// ToDo: move validation logic to seperate class 
 		private bool IsValidWord(string value)
 		{
 			if (string.IsNullOrWhiteSpace(value))
@@ -39,6 +76,7 @@ namespace Assignment_Hangman
 		{
 			SecretWord = secretWord;
 			_secretWordGuessVersion = new char[secretWord.Length];
+			
 			SetInitialValuesOfSecretWordGuessVersion(_secretWordGuessVersion);
 		}
 
@@ -50,8 +88,25 @@ namespace Assignment_Hangman
 			}
 		}
 
-		internal void StartGameRound()
+		
+		public void GuessingLoop()
 		{
+			bool gameWon = false;
+			bool gameLost = false;
+
+			int tempTestValue = 10;
+
+			do
+			{
+				_consoleUI.PrintGameUi(
+					secretWordGuessVersion: BuildString(_secretWordGuessVersion),
+					guessedLetters: BuildString(_guessedLetters),
+					RemainingLives
+				);
+
+				RemainingLives--;
+				Console.ReadKey();
+			} while (!gameWon || !gameLost);
 			
 		}
 

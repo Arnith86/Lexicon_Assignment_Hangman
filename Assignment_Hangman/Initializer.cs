@@ -28,7 +28,7 @@ internal class Initializer<T>
 		// ToDo: how should i handle thrown exception here?
 		_gameLoop.PrepareNewSecretWord( _wordArray[randomWordIndex]);
 
-		_gameLoop.StartGameRound();
+		_gameLoop.GuessingLoop();
 	}
 
 	private void InitializeGameVariables()

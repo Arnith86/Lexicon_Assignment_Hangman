@@ -8,7 +8,10 @@ namespace Assignment_Hangman
         static void Main(string[] args)
         {
             IWordLoader<string> wordLoader = new WordLoader<string>();
-            GameLoop gameLoop = new GameLoop();
+            ConsoleUI consoleUI = new ConsoleUI();
+            GameLoop gameLoop = new GameLoop(consoleUI);
+
+            consoleUI.PrintWelcomeMessage();
 
             Initializer<string> initializer = new Initializer<string>(wordLoader, gameLoop);
         }
