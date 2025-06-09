@@ -1,7 +1,10 @@
 ﻿using ConsoleAbstraction;
 
 namespace Assignment_Hangman
-{
+{ 
+	/// <summary>
+	/// This class is used to visualize the remaining number of guesses in the Hangman game.
+	/// </summary>
 	internal class HangedManArt
 	{
 		public void PrintHangedManArt(int remainingLives)
