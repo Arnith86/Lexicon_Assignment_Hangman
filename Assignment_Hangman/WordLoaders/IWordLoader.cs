@@ -3,11 +3,11 @@
 /// <summary>
 /// Interface for loading words.
 /// </summary>
-internal interface IWordLoader
+internal interface IWordLoader<T> 
 {
 	/// <summary>
-	/// Loads words from a source and returns them as a list of strings. 
+	/// Loads words from a source and returns a collection with the words. 
 	/// </summary>
-	/// <returns>A <see cref="List{string}"/> with words.</returns>
-	List<string> LoadWords();
+	/// <returns>A <see cref="IEnumerable{T}"/> </returns>
+	IEnumerable<string> LoadWords();
 }

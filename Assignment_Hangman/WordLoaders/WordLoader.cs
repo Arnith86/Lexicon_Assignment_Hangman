@@ -3,10 +3,10 @@
 /// <summary>
 /// Concrete implementation of <see cref="IWordLoader"/> that loads words from a text file.
 /// </summary>
-internal class WordLoader : IWordLoader
+internal class WordLoader<T> : IWordLoader<T>
 {
 	/// <inheritdoc />
-	public List<string> LoadWords()
+	public IEnumerable<string> LoadWords()
 	{
 		string filePath = @"Words\Hangman_Word_List.txt";
 
@@ -16,6 +16,6 @@ internal class WordLoader : IWordLoader
 		return File.ReadAllText(filePath)
 			.Trim()
 			.Split(',')
-			.ToList();
+			.ToArray();
 	}
 }
