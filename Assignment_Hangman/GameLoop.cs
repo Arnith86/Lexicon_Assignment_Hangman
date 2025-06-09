@@ -1,33 +1,16 @@
-﻿using Assignment_Hangman.WordLoaders;
-
-namespace Assignment_Hangman;
-
-internal class GameLoop
+﻿
+namespace Assignment_Hangman
 {
-	private List<string> _wordList;
-	private readonly IWordLoader _wordLoader;
-	
-	public List<string> WordList { get; protected set; }
-
-	public GameLoop(IWordLoader wordLoader)
+	internal class GameLoop
 	{
-		_wordLoader = wordLoader;
-		InitializeGameVariables();
-		
-
-		
-	}
-
-	private void InitializeGameVariables()
-	{
-		try
+		public GameLoop()
 		{
-			_wordList = _wordLoader.LoadWords();
+			
 		}
-		catch (FileNotFoundException e)
-		{
 
-			throw new Exception();
+		internal void PrepareNewSecretWord(string v)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

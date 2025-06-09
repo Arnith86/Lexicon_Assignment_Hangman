@@ -1,4 +1,5 @@
 ﻿using Assignment_Hangman.WordLoaders;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Assignment_Hangman
 {
@@ -6,9 +7,10 @@ namespace Assignment_Hangman
     {
         static void Main(string[] args)
         {
-            IWordLoader wordLoader = new WordLoader();
+            IWordLoader<string> wordLoader = new WordLoader<string>();
+            GameLoop gameLoop = new GameLoop();
 
-            GameLoop gameLoop = new GameLoop(wordLoader);
+            Initializer<string> initializer = new Initializer<string>(wordLoader, gameLoop);
         }
     }
 }
