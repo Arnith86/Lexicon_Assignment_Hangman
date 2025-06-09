@@ -54,5 +54,17 @@ namespace Assignment_Hangman
 		{
 			
 		}
+
+		private string BuildString(char[]? charArray)
+		{
+			StringBuilder sb = new StringBuilder();
+
+			for (int i = 0; i < charArray.Length; i++)
+			{
+				sb.Append(charArray[i]);
+			}
+
+			return sb.ToString();
+		}
 	}
 }
