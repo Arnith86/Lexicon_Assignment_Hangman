@@ -8,8 +8,6 @@ internal class Initializer<T>
 	private string[]? _wordArray;
 	private readonly IWordLoader<T> _wordLoader;
 	private GameLoop _gameLoop;
-	//private string _secretWord;     // Not used yet.
-	//private string _guessedLetters;	// Not used yet.
 
 	public string[] WordList { get; protected set; } = new string[] { };
 
@@ -27,7 +25,10 @@ internal class Initializer<T>
 		int WordAmount = _wordArray.Length;
 		int randomWordIndex = random.Next(0, WordAmount);
 
+		// ToDo: how should i handle thrown exception here?
 		_gameLoop.PrepareNewSecretWord( _wordArray[randomWordIndex]);
+
+		_gameLoop.StartGameRound();
 	}
 
 	private void InitializeGameVariables()
