@@ -1,6 +1,6 @@
 ﻿using ConsoleAbstraction;
 
-namespace Assignment_Hangman
+namespace Assignment_Hangman.Console
 {
 	/// <summary>
 	/// This class is responsible for handling the console user interface for the Hangman game. 
@@ -39,6 +39,7 @@ namespace Assignment_Hangman
 			string guessedLetters, 
 			int remainingLives)
 		{
+			// ToDo: fix text positioning, place after hangman
 			Console.Clear();
 			PrintHangedMan(remainingLives);
 			ConsoleWritePrint.WriteLine("");

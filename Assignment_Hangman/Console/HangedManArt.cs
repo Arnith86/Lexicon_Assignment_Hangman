@@ -1,6 +1,6 @@
 ﻿using ConsoleAbstraction;
 
-namespace Assignment_Hangman
+namespace Assignment_Hangman.Console
 { 
 	/// <summary>
 	/// This class is used to visualize the remaining number of guesses in the Hangman game.
