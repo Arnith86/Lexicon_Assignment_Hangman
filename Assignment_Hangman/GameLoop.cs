@@ -8,6 +8,7 @@ namespace Assignment_Hangman
 	internal class GameLoop
 	{
 		private readonly ConsoleUI _consoleUI;
+		private readonly StringBuilder _sb;
 		private string _secretWord = string.Empty;
 		private const int _c_MAX_LIVES = 10;
 
@@ -35,9 +36,10 @@ namespace Assignment_Hangman
 			}
 		}
 
-		public GameLoop(ConsoleUI consoleUI)
+		public GameLoop(ConsoleUI consoleUI, StringBuilder sb)
 		{
 			_consoleUI = consoleUI;
+			_sb = sb;
 			RemainingLives = _c_MAX_LIVES;
 		}
 
@@ -80,6 +82,7 @@ namespace Assignment_Hangman
 			SetInitialValuesOfSecretWordGuessVersion(_secretWordGuessVersion);
 		}
 
+		// ToDo: extract to a helper class?
 		private void SetInitialValuesOfSecretWordGuessVersion(char[] secretWordGuessVersion)
 		{
 			for (int i = 0; i < secretWordGuessVersion.Count(); i++)
@@ -89,6 +92,9 @@ namespace Assignment_Hangman
 		}
 
 		
+		/// <summary>
+		/// Handles the main game loop for the Hangman game.
+		/// </summary>
 		public void GuessingLoop()
 		{
 			bool gameWon = false;
@@ -96,8 +102,10 @@ namespace Assignment_Hangman
 
 			int tempTestValue = 10;
 
+			
 			do
 			{
+				// Prints current game Status.
 				_consoleUI.PrintGameUi(
 					secretWordGuessVersion: BuildString(_secretWordGuessVersion),
 					guessedLetters: BuildString(_guessedLetters),
@@ -110,16 +118,15 @@ namespace Assignment_Hangman
 			
 		}
 
+		// ToDo: extract to a helper class?
 		private string BuildString(char[]? charArray)
 		{
-			StringBuilder sb = new StringBuilder();
-
 			for (int i = 0; i < charArray.Length; i++)
 			{
-				sb.Append(charArray[i]);
+				_sb.Append(charArray[i]);
 			}
 
-			return sb.ToString();
+			return _sb.ToString();
 		}
 	}
 }
