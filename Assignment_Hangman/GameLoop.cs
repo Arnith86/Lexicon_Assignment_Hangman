@@ -1,5 +1,6 @@
 ﻿
 
+using Assignment_Hangman.ConsoleRelated;
 using ConsoleAbstraction;
 using System.Text;
 
@@ -102,7 +103,7 @@ namespace Assignment_Hangman
 
 			int tempTestValue = 10;
 
-			
+			// ToDo: Continue from here !!!!!!!!!!!!!!!!!!!!!!! many buggs!!
 			do
 			{
 				// Prints current game Status.

@@ -12,7 +12,7 @@ namespace ConsoleAbstraction
 		/// Used to inform that input supplied was not letter(s).
 		/// </summary>
 		public static void InvalidInputNotLetter() =>
-		DisplayErrorMessage("You supplied an invalid input. \n Input must contain only letters! Please try again.");
+			DisplayErrorMessage("You supplied an invalid input. \n Input must contain only letters! Please try again.");
 
 		/// <summary>
 		/// Used to inform that input supplied cannot be a negative value.
@@ -24,7 +24,7 @@ namespace ConsoleAbstraction
 		/// Used to inform that input supplied cannot be longer than 18 characters.
 		/// </summary>
 		public static void InvalidInputToLong() =>
-			DisplayErrorMessage("Input cannot be empty! Please try again.");
+			DisplayErrorMessage("Words in this game are no longer then 18 characters. Try again!");
 
 		/// <summary>
 		/// Displays the supplied error message in red text on the console.

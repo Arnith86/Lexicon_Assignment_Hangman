@@ -1,6 +1,6 @@
 ﻿using ConsoleAbstraction;
 
-namespace Assignment_Hangman.Console
+namespace Assignment_Hangman.ConsoleRelated
 {
 	/// <summary>
 	/// This class is responsible for handling the console user interface for the Hangman game. 

@@ -1,7 +1,7 @@
 ﻿using ConsoleAbstraction;
 using System.Text.RegularExpressions;
 
-namespace Assignment_Hangman.Console;
+namespace Assignment_Hangman.ConsoleRelated;
 
 internal class InputValidator : IInputValidator
 {
@@ -17,17 +17,16 @@ internal class InputValidator : IInputValidator
 			input = ConsoleWritePrint.ReadLine();
 
 			if (string.IsNullOrWhiteSpace(input))
+			{
 				DisplayErrorMessages.InvalidInputEmpty();
+			}
 			else if (!(_onlyLettersRegex.IsMatch(input)))
+			{
 				DisplayErrorMessages.InvalidInputNotLetter();
-			else if (input.Length > 1)
-			{ 
-				if (!(IsValidSingleWord(input)))
-				{
-					DisplayErrorMessages.DisplayErrorMessage(
-						"Words in this game are no longer then 18 characters. Try again!"
-					);
-				}
+			}	  
+			else if (input.Length > 1 && !(IsValidWord(input)))
+			{
+				DisplayErrorMessages.InvalidInputToLong();
 			}
 			else
 				isValid = true;
@@ -37,8 +36,8 @@ internal class InputValidator : IInputValidator
 		return input;
 	}
 
-	private bool IsValidSingleWord(string value)
+	private bool IsValidWord(string value)
 	{
-		return 
+		return value.Length <= 18;
 	}
 }
