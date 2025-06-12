@@ -16,8 +16,8 @@ namespace Assignment_Hangman.ConsoleRelated
 
 		public void PrintWelcomeMessage()
 		{
-			Console.Clear();
-			Console.ForegroundColor = ConsoleColor.DarkYellow;
+			ConsoleWritePrint.Clear();
+			ConsoleWritePrint.ForegroundColor(ConsoleColor.DarkYellow);
 
 			ConsoleWritePrint.WriteLine("Welcome to Hangman!");
 			ConsoleWritePrint.WriteLine("The rules are simple: \n" +
@@ -26,11 +26,11 @@ namespace Assignment_Hangman.ConsoleRelated
 				"3. If you guess a letter correctly, it will be revealed in the word.\n" +
 				"4. If you guess an incorrect letter or word, you will lose a life.\n" +
 				"5. The game ends when you either guess the word or run out of lives.\n");
-			Console.ResetColor();
+			ConsoleWritePrint.ResetConsoleColor();
 			
 			ConsoleWritePrint.WriteLine("Press any key to start the game...\n");
-
-			Console.ReadKey();
+			
+			ConsoleWritePrint.ReadLine();
 		}
 
 
@@ -40,8 +40,10 @@ namespace Assignment_Hangman.ConsoleRelated
 			int remainingLives)
 		{
 			// ToDo: fix text positioning, place after hangman
-			Console.Clear();
+			ConsoleWritePrint.Clear();
+			ConsoleWritePrint.ForegroundColor(ConsoleColor.DarkCyan);
 			PrintHangedMan(remainingLives);
+			ConsoleWritePrint.ResetConsoleColor();
 			ConsoleWritePrint.WriteLine("");
 			ConsoleWritePrint.WriteLine($"Secret Word: {secretWordGuessVersion} \n\n");
 			ConsoleWritePrint.WriteLine($"Guessed Letters: {guessedLetters} \n\n");
