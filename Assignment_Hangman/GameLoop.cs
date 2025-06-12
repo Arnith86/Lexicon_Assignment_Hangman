@@ -10,6 +10,7 @@ namespace Assignment_Hangman
 	{
 		private readonly ConsoleUI _consoleUI;
 		private readonly StringBuilder _sb;
+		private readonly IInputValidator _inputValidator;
 		private string _secretWord = string.Empty;
 		private const int _c_MAX_LIVES = 10;
 
@@ -37,10 +38,11 @@ namespace Assignment_Hangman
 			}
 		}
 
-		public GameLoop(ConsoleUI consoleUI, StringBuilder sb)
+		public GameLoop(ConsoleUI consoleUI, StringBuilder sb, IInputValidator inputValidator)
 		{
 			_consoleUI = consoleUI;
 			_sb = sb;
+			_inputValidator = inputValidator;
 			RemainingLives = _c_MAX_LIVES;
 		}
 
@@ -101,8 +103,6 @@ namespace Assignment_Hangman
 			bool gameWon = false;
 			bool gameLost = false;
 
-			int tempTestValue = 10;
-
 			// ToDo: Continue from here !!!!!!!!!!!!!!!!!!!!!!! many buggs!!
 			do
 			{
@@ -113,15 +113,41 @@ namespace Assignment_Hangman
 					RemainingLives
 				);
 
-				RemainingLives--;
-				Console.ReadKey();
+				string word = _inputValidator.validateInput();
+
+				if (word.Length > 1 && IsGuessedWordCorrect(word: word, SecretWord))
+				{
+					gameWon = true;
+				}
+				//else if (IsLetterInSecretWord())
+				else
+				{
+					ConsoleWritePrint.WriteLine($"{word} was the wrong word!");
+					RemainingLives--;
+					if (RemainingLives == 0) gameLost = true;
+				}
+
+				Console.ReadKey(); // remove after testing.
+
 			} while (!gameWon || !gameLost);
 			
+		}
+
+		private bool IsGuessedWordCorrect(string word, string secretWord)
+		{
+			// Different sizes = different words
+			if (word.Length != secretWord.Length) return false;
+
+			for (int i = 0; i < secretWord.Length; i++)
+				if (word[i] != secretWord[i]) return false;
+			
+			return true;
 		}
 
 		// ToDo: extract to a helper class?
 		private string BuildString(char[]? charArray)
 		{
+			_sb.Clear();
 			for (int i = 0; i < charArray.Length; i++)
 			{
 				_sb.Append(charArray[i]);

@@ -12,7 +12,9 @@ namespace Assignment_Hangman
             IWordLoader<string> wordLoader = new WordLoader<string>();
             StringBuilder stringBuilder = new StringBuilder();
             ConsoleUI consoleUI = new ConsoleUI();
-            GameLoop gameLoop = new GameLoop(consoleUI, stringBuilder);
+            IInputValidator inputValidator = new InputValidator();
+
+            GameLoop gameLoop = new GameLoop(consoleUI, stringBuilder, inputValidator);
 
             consoleUI.PrintWelcomeMessage();
 
